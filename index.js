@@ -45,8 +45,16 @@ async function getCourse() {
   // or
   // and
 
+  const pageNumber = 2;
+  const pageSize   = 10;
+
   const courses = await Course
+    // /api/courses?pageNumber=2&pageSize=10
+
     .find( {author: 'Louis', isPublished: true })
+    // Pagination
+    .skip((pageNumber - 1)* pageSize)
+    .limit(pageSize)
     // .find({ price: { $gte: 10, $lte: 20 } })
     // .find({ price: { $in: [10, 15, 20] } })
     // .find()
@@ -66,8 +74,8 @@ async function getCourse() {
 
     .limit(10)
     .sort({ name: 1 })
-    // .select({ name: 1, tag: 1 });
-    .count()
+    .select({ name: 1, tag: 1 });
+    // .count()
   console.log(courses);
 }
 
