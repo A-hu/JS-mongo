@@ -49,9 +49,21 @@ async function getCourse() {
     // .find( {author: 'Louis', isPublished: true })
     // .find({ price: { $gte: 10, $lte: 20 } })
     // .find({ price: { $in: [10, 15, 20] } })
-    .find()
-    .and([ { author: 'Louis' }, { isPublished: true } ])
+    // .find()
+    // .and([ { author: 'Louis' }, { isPublished: true } ])
     // .or([ { author: 'Louis' }, { isPublished: true } ])
+
+    // Regular expression
+    // https://docs.mongodb.com/manual/reference/operator/query/regex/
+    // starts with Lou
+    .find({ author: /^Lou/ })
+
+    // end with Tseng
+    .find({ author: /Tseng$/i }) // i means case insensitive
+
+    // contains with Lou
+    .find({ author: /.*Lou.*/i })
+
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, tag: 1 });
