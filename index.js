@@ -46,7 +46,7 @@ async function getCourse() {
   // and
 
   const courses = await Course
-    // .find( {author: 'Louis', isPublished: true })
+    .find( {author: 'Louis', isPublished: true })
     // .find({ price: { $gte: 10, $lte: 20 } })
     // .find({ price: { $in: [10, 15, 20] } })
     // .find()
@@ -56,17 +56,18 @@ async function getCourse() {
     // Regular expression
     // https://docs.mongodb.com/manual/reference/operator/query/regex/
     // starts with Lou
-    .find({ author: /^Lou/ })
+    // .find({ author: /^Lou/ })
 
     // end with Tseng
-    .find({ author: /Tseng$/i }) // i means case insensitive
+    // .find({ author: /Tseng$/i }) // i means case insensitive
 
     // contains with Lou
-    .find({ author: /.*Lou.*/i })
+    // .find({ author: /.*Lou.*/i })
 
     .limit(10)
     .sort({ name: 1 })
-    .select({ name: 1, tag: 1 });
+    // .select({ name: 1, tag: 1 });
+    .count()
   console.log(courses);
 }
 
