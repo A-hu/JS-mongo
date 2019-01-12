@@ -16,10 +16,28 @@ const courseSchema = new mongoose.Schema({
 // Course Class
 const Course = mongoose.model('Course', courseSchema);
 
-// Course object
-const course = new Course({
-  name: 'NodeJS',
-  author: 'Louis',
-  tag: [ 'Node', 'Backend' ],
-  isPublished: true
-});
+async function createCourse() {
+  // Course object
+  const course = new Course({
+    name: 'ReactJS',
+    author: 'Louis',
+    tag: [ 'React', 'Frontend' ],
+    isPublished: true
+  });
+
+  const result = await course.save();
+  console.log(result);
+}
+
+// createCourse()
+
+async function getCourse() {
+  const courses = await Course
+    .find( {author: 'Louis', isPublished: true })
+    .limit(10)
+    .sort({ name: 1 })
+    .select({ name: 1, tag: 1 });
+  console.log(courses);
+}
+
+getCourse()
