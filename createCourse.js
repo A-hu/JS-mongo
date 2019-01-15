@@ -6,7 +6,7 @@ async function createCourse() {
     name: 'NodeJS',
     category: 'web',
     author: 'Louis',
-    tags: null,
+    tags: ['web', 'mobile'],
     isPublished: true,
     price: 20
   });
