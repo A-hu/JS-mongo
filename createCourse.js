@@ -6,9 +6,9 @@ async function createCourse() {
     name: 'NodeJS',
     category: 'web',
     author: 'Louis',
-    tag: [ 'Node', 'Backend' ],
+    tags: null,
     isPublished: true,
-    price: 9
+    price: 20
   });
 
   try {
