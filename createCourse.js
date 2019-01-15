@@ -4,11 +4,11 @@ async function createCourse() {
   // Course object
   const course = new Course({
     name: 'NodeJS',
-    category: '-',
+    category: 'WEB',
     author: 'Louis',
-    tags: [],
+    tags: ['frontend'],
     isPublished: true,
-    price: 20
+    price: 20.5
   });
 
   try {

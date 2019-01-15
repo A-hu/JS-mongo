@@ -17,7 +17,10 @@ const courseSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['web', 'mobile', 'network']
+    enum: ['web', 'mobile', 'network'],
+    lowercase: true,
+    // uppercase: true,
+    trim: true
   },
   author: String,
   tags: {
@@ -40,7 +43,9 @@ const courseSchema = new mongoose.Schema({
     type: Number,
     required: function() { return this.isPublished; }, // Can NOT use arraw function
     min: 10,
-    max: 200
+    max: 200,
+    get: v => Math.round(v),
+    set: v => Math.round(v)
   }
 });
 
