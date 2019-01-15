@@ -5,12 +5,30 @@ mongoose.connect(mongoDB)
   .then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err))
 
+// Should validate in both API and mongodb sites
 const courseSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 255,
+    // match: /pattern/
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ['web', 'mobile', 'network']
+  },
   author: String,
-  tag: [ String ],
+  tags: [ String ],
   date: { type: Date, default: Date.now },
-  isPublished: Boolean
+  isPublished: Boolean,
+  price: {
+    type: Number,
+    required: function() { return this.isPublished; }, // Can NOT use arraw function
+    min: 10,
+    max: 200
+  }
 });
 
 // Course Class
